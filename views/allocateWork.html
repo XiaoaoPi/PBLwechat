@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>小组分工</title>
+    <meta name="description" content="基本信息">
+    <script src="https://unpkg.com/leancloud-storage/dist/av.js"></script>
+    <link href="../../public/wechatcss/weui.css"  rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <!-- 手机端的页面处理 -->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+  </head>
+  <body ontouchstart style="background-color: #f8f8f8;">
+     <div id="tableList"></div>
+     <script id="table-template" type="text/x-handlebars-template">
+       {{#each temp}}
+       <div class="weui-cells__title">小组分工</div>
+       <div class="weui-cells weui-cells_form">
+                   <div class="weui-cell">
+                       <div class="weui-cell__bd">
+                           <textarea class="weui-textarea" placeholder="{{temp}}" rows="5"></textarea>
+                           <div class="weui-textarea-counter"><span>0</span>/200</div>
+                       </div>
+                   </div>
+               </div>
+                 <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary">确认</a>
+       {{/each}}
+    </script>
+
+     <!--进行数据处理、html构造-->
+     <script type="text/javascript">
+       $(document).ready(function() {
+         //模拟的json对象
+         var data = {
+                    "temp": [
+                         {
+                           "temp": "xxxxx哈哈哈哈哈哈",
+                         }
+                     ]
+                 };
+
+         //注册一个Handlebars模版，通过id找到某一个模版，获取模版的html框架
+         //$("#table-template").html()是jquery的语法，不懂的童鞋请恶补。。。
+         var myTemplate = Handlebars.compile($("#table-template").html());
+
+        //将json对象用刚刚注册的Handlebars模版封装，得到最终的html，插入到基础table中。
+        $('#tableList').html(myTemplate(data));
+       });     </script>
+  </body>
+</html>

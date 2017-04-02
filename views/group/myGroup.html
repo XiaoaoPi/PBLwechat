@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>小组信息</title>
+    <meta name="description" content="基本信息">
+    <script src="https://unpkg.com/leancloud-storage/dist/av.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <!-- 手机端的页面处理 -->
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <!-- wechat UI CDN (CSS) -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <!-- 本地的脚本 -->
+    <script type="text/javascript" src="/scripts/initLeanCloud.js"></script>
+    <script type="text/javascript" src="/scripts/reuseMethods.js"></script>
+    <script type="text/javascript" src="/scripts/group/myGroup.js"></script>
+  </head>
+  <body ontouchstart style="background-color: #f8f8f8;">
+    <div class="weui-cells__title">我的小组</div>
+    <div id="tableList"></div>
+    <script id="userGroup" type="text/x-handlebars-template">
+    \{{#each group}}
+    <div class="weui-cells">
+      <div class="weui-cell" >
+        <div class="weui-cell__bd">
+          <p>小组名称：\{{name}}</p>
+        </div>
+      </div>
+      <div class="weui-cell" >
+        <div class="weui-cell__bd">
+          <p>小组长：\{{leaderName}}</p>
+        </div>
+      </div>
+      <div class="weui-cell" >
+        <div class="weui-cell__bd">
+          <p>小组权限：\{{publicity}}</p>
+        </div>
+      </div>
+      <div class="weui-cell" >
+        <div class="weui-cell__bd">
+          <p>小组人数：\{{number}}</p>
+        </div>
+      </div>
+<!--       <div class="weui-cell" >
+        <div class="weui-cell__bd">
+          <p>小组成员：\{{member}}</p>
+        </div>
+      </div> -->
+    </div>
+    \{{/each}}
+    </script>
+    <br>
+    <br>
+    <br>
+    <form class="quitGroup">
+    <button class="weui-btn weui-btn_warn weui-btn_primary" type="submit">退出小组</button>
+    </form>
+  </body>
+</html>
