@@ -2,6 +2,9 @@
   var data= {
       group: []
       };
+  var userData={
+      members:[]
+  };
   var member = new AV.Op.Relation();
 function setupData() {
   //var query    = new AV.Query('Group');
@@ -16,6 +19,15 @@ function setupData() {
     var number      = group[0].get('number');
     member = group[0].get('member');
     member.parent = group[0];
+    var query1 = member.query();
+    query1.find().then(function(users){
+      users.forEach(function(user){
+        var username =user.get('username');
+        var membername = user.get('name');
+        userData.members.push({
+          username,
+          membername
+          }); 
     var publicity;
     if(flag == 0)
       publicity = '隐藏';
@@ -23,6 +35,7 @@ function setupData() {
       publicity = '密码模式';
     else if(flag == 2)
       publicity = '公开';
+
     // handlebars context
     data.group.push({
       publicity,
@@ -31,13 +44,18 @@ function setupData() {
       publicity,
       number
   }); 
-
   // handlebars helper     
   $(document).ready(function() {
+      var source      = $("#memberInfo").html();
+      var template    = Handlebars.compile(source);
+      $('#groupMember').html(template(userData));
       var source      = $("#userGroup").html();
       var template    = Handlebars.compile(source);
       $('#tableList').html(template(data));
-  });  
+  });
+      });
+    });
+
   //Quit the Group
   $(".quitGroup").on('submit', function(e) {
     e.preventDefault();

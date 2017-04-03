@@ -6,3 +6,7 @@ function isCurrentUser () {
   }
   return false;
 };
+
+function isCurrentLeader(user){
+	
+};

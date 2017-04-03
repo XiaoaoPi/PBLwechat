@@ -29,7 +29,7 @@ function setupData(ofClass) {
   });
 }
 
-function applyForProblem(){
+function applyForProblem(group){
   var title = $('#inputTitle').val();
   var extraInfo = $('#inputReason').val();
   var query    = new AV.Query('Problem');
@@ -47,6 +47,7 @@ function applyForProblem(){
       var problemApplyTable = new ProblemApplyTable();
       problemApplyTable.set('ofClass', ofClass);
       problemApplyTable.set('problem', problem);
+      problemApplyTable.set('group', group);
       problemApplyTable.set('extraInfo', extraInfo);
       problemApplyTable.set('state', 0);
       problemApplyTable.save().then(
@@ -74,10 +75,11 @@ $(function() {
     var query = AV.Relation.reverseQuery('Group', 'member', currentUser);
     query.include('leader');
     query.find().then(
-      function(group){
+      function(groups){
+      var group = groups[0];
       if(group){
-        if(group.get('leander').get('objectId')==currentUser.get('objectId'))
-            applyForProblem(group);
+        if(group.get('leader').get('objectId')==currentUser.get('objectId'))
+           applyForProblem(group);
         else
         {
           alert('你还不是本组小组长哦');

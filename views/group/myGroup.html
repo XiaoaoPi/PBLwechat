@@ -21,42 +21,70 @@
     <script type="text/javascript" src="/scripts/group/myGroup.js"></script>
   </head>
   <body ontouchstart style="background-color: #f8f8f8;">
-    <div class="weui-cells__title">我的小组</div>
+    <div class="weui-cells__title">&nbsp;&nbsp;&nbsp;&nbsp;我的小组</div>
     <div id="tableList"></div>
+    <div id="groupMember"></div>
     <script id="userGroup" type="text/x-handlebars-template">
     \{{#each group}}
     <div class="weui-cells">
+    <a class="weui-cell weui-cell_access">
       <div class="weui-cell" >
         <div class="weui-cell__bd">
           <p>小组名称：\{{name}}</p>
         </div>
       </div>
+      </a>
+      <a class="weui-cell weui-cell_access">
       <div class="weui-cell" >
         <div class="weui-cell__bd">
           <p>小组长：\{{leaderName}}</p>
         </div>
       </div>
+      </a>
+      <a class="weui-cell weui-cell_access">
       <div class="weui-cell" >
         <div class="weui-cell__bd">
           <p>小组权限：\{{publicity}}</p>
         </div>
       </div>
-      <div class="weui-cell" >
+      </a>
+      <a class="weui-cell weui-cell_access">
+      <div class="weui-cell weui-cell_access" >
         <div class="weui-cell__bd">
           <p>小组人数：\{{number}}</p>
         </div>
       </div>
-<!--       <div class="weui-cell" >
+      </a>
+      <a class="weui-cell weui-cell_access">
+      <div class="weui-cell weui-cell_access" >
         <div class="weui-cell__bd">
-          <p>小组成员：\{{member}}</p>
+          <p>小组成员：</p>
         </div>
-      </div> -->
-    </div>
+      </div>
+      </a>
+    \{{/each}}
+    </script>
+    <script id="memberInfo" type="text/x-handlebars-template">
+    \{{#each members}}
+    <div class="weui-cells" ontouchstart style="background-color: #E0E0E0;border-style:solid; border-width:1px; border-top-color:#BEBEBE;border-bottom-color:#BEBEBE">
+         <div class="weui-cell">
+             <div class="weui-cell__hd" style="position: relative;margin-right: 10px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAeFBMVEUAwAD///+U5ZTc9twOww7G8MYwzDCH4YcfyR9x23Hw+/DY9dhm2WZG0kbT9NP0/PTL8sux7LFe115T1VM+zz7i+OIXxhes6qxr2mvA8MCe6J6M4oz6/frr+us5zjn2/fa67rqB4IF13XWn6ad83nxa1loqyirn+eccHxx4AAACEQVRo3u2W2ZKiQBBF8wpCNSCyLwri7v//4bRIFVXoTBBB+DAReV5sG6lTXDITiGEYhmEYhmEYhmEYhmEY5v9i5fsZGRx9PyGDne8f6K9cfd+mKXe1yNG/0CcqYE86AkBMBh66f20deBc7wA/1WFiTwvSEpBMA2JJOBsSLxe/4QEEaJRrASP8EVF8Q74GbmevKg0saa0B8QbwBdjRyADYxIhqxAZ++IKYtciPXLQVG+imw+oo4Bu56rjEJ4GYsvPmKOAB+xlz7L5aevqUXuePWVhvWJ4eWiwUQ67mK51qPj4dFDMlRLBZTqF3SDvmr4BwtkECu5gHWPkmDfQh02WLxXuvbvC8ku8F57GsI5e0CmUwLz1kq3kD17R1In5816rGvQ5VMk5FEtIiWislTffuDpl/k/PzscdQsv8r9qWq4LRWX6tQYtTxvI3XyrwdyQxChXioOngH3dLgOFjk0all56XRi/wDFQrGQU3Os5t0wJu1GNtNKHdPqYaGYQuRDfbfDf26AGLYSyGS3ZAK4S8XuoAlxGSdYMKwqZKM9XJMtyqXi7HX/CiAZS6d8bSVUz5J36mEMFDTlAFQzxOT1dzLRljjB6+++ejFqka+mXIe6F59mw22OuOw1F4T6lg/9VjL1rLDoI9Xzl1MSYDNHnPQnt3D1EE7PrXjye/3pVpr1Z45hMUdcACc5NVQI0bOdS1WA0wuz73e7/5TNqBPhQXPEFGJNV2zNqWI7QKBd2Gn6AiBko02zuAOXeWIXjV0jNqdKegaE/kJQ6Bfs4aju04lMLkA2T5wBSYPKDGF3RKhFYEa6A1L1LG2yacmsaZ6YPOSAMKNsO+N5dNTfkc5Aqe26uxHpx7ZirvgCwJpWq/lmX1hA7LyabQ34tt5RiJKXSwQ+0KU0V5xg+hZrd4Bn1n4EID+WkQdgLfRNtvil9SPfwy+WQ7PFBWQz6dGWZBLkeJFXZGCfLUjCgGgqXo5TuSu3cugdcTv/HjqnBTEMwzAMwzAMwzAMwzAMw/zf/AFbXiOA6frlMAAAAABJRU5ErkJggg==" style="width: 50px;display: block"/>
+            </div>
+             <div class="weui-cell__bd">
+               <p>\{{membername}}</p>
+               <p style="font-size: 13px;color: #888888;">\{{username}}</P>
+             </div>
+         </div>
+       </div>
     \{{/each}}
     </script>
     <br>
     <br>
-    <br>
+<!--     \{{#if isLeader}} -->
+    <div style="margin-bottom: 2px">  
+    <a href="/group/changeGroupInfo" class="weui-btn " style="background-color:#66b3ff">更改信息</a>
+    </div>
+<!--     \{{/if}} -->
     <form class="quitGroup">
     <button class="weui-btn weui-btn_warn weui-btn_primary" type="submit">退出小组</button>
     </form>

@@ -43,13 +43,14 @@ function setupData(ofClass) {
   });
 }
 
-function joinGroup(){
+function applyJoinGroup(){
   var groupName = $('#inputGroupName').val();
   var inputPassword = $('#inputPassword').val();
+  var extraInfo = $('#inputReason').val();
     var query    = new AV.Query('Group');
     query.containedIn('name', [groupName]);
     query.include('member');
-    query.include('class');
+    query.include('ofClass');
     query.find().then(function(groups){
       var group = groups[0];
       if(!group)
@@ -59,11 +60,11 @@ function joinGroup(){
         }
       var flag = group.get('flag');
       var password = group.get('password');
-      var number = group.get('number');
+      //var number = group.get('number');
       var groupOfClass = group.get('ofClass');
-      if(groupOfClass.get('objectId') != ofClass.get(objectId))
+      if(groupOfClass.get('objectId') != ofClass.get('objectId'))
         {
-          alert('没有找到这个小组。')
+          alert('没有找到这个小组。');
           return -1;
         }
       switch(flag)
@@ -78,13 +79,19 @@ function joinGroup(){
               break;
             }
         case 2:
-        {
-          var member = new AV.Op.Relation();
-          member = group.get('member');
-          member.parent = group;
-          member.add(currentUser);
-          group.set('number', number + 1);
-          group.save();
+        {                      //生成一个小组申请表
+          var applyJoinGroup = AV.Object.extend('applyJoinGroup');
+          var applyJoinGroup = new applyJoinGroup();
+          applyJoinGroup.set('targetGroup', group);
+          applyJoinGroup.set('applyUser', currentUser);
+          applyJoinGroup.set('extraInfo', extraInfo);
+          applyJoinGroup.set('state', 0);
+          applyJoinGroup.save().then(
+            function (table) {
+            //window.location.href = "../info";
+            }, (function (error) {
+            alert(JSON.stringify(error));
+            }));
         }
       }
     }, function(error){
@@ -102,7 +109,7 @@ $(function() {
       setupData(ofClass);
     $(".inputInfo").on('submit', function(e) {
     e.preventDefault();
-    joinGroup();
+    applyJoinGroup();
   });
     }, 
     function(error){

@@ -2,7 +2,7 @@
 var express = require('express');
 var timeout = require('connect-timeout');
 var path = require('path');
-var info = require('./routes/info');
+var account = require('./routes/account');
 var group = require('./routes/group');
 var problem = require('./routes/problem');
 var cookieParser = require('cookie-parser');
@@ -16,7 +16,7 @@ var app = express();
 var hbs = require('hbs');
 var arr = new Array();
     arr[0]=path.join(__dirname, 'views'),
-    arr[1]=path.join(__dirname, 'views/info'),
+    arr[1]=path.join(__dirname, 'views/account'),
     arr[2]=path.join(__dirname, 'views/group'),
     arr[3]=path.join(__dirname, 'views/problem');
 app.engine('html', hbs.__express);
@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/info', info);
+app.use('/account', account);
 app.use('/group', group);
 app.use('/problem', problem);
 app.get('/', function(req, res) {

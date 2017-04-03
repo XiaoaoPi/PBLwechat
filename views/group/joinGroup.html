@@ -36,12 +36,18 @@
           <input type="username" id="inputPassword" class="weui-input form-control" placeholder=申请密码(仅对密码模式下的小组)  autofocus>
         </div>
       </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <label for="inputReason" class="sr-only"></label>
+          <input type="text" id="inputReason" class="weui-input form-control" placeholder=申请原因（非必需）  autofocus>
+        </div>
+      </div>
     </div>
    
 
       <div id="tableList"></div>
       <br>
-      <button class="weui-btn weui-btn_primary" type="submit">确认加入</button>
+      <button class="weui-btn weui-btn_primary" type="submit">申请加入</button>
     </form>
     <script id="userGroup" type="text/x-handlebars-template"> 
     \{{#each groups}}

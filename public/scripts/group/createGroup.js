@@ -27,6 +27,10 @@ function createGroup() {
   var member = [currentUser];
   var relation = group.relation('member'); // 创建 AV.Relation
   member.map(relation.add.bind(relation));
+  if(!flag)
+    {
+      alert('请选择合适的对外权限');
+    }
   if(flag == '0')
     group.set('flag', 0);
   else if(flag == '1')

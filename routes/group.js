@@ -15,4 +15,7 @@ router.get('/myGroup', function(req, res) {
 router.get('/joinGroup', function(req, res) {
   res.render('joinGroup', {title: "join a group"});
 });
+router.get('/changeGroupInfo', function(req, res) {
+  res.render('changeGroupInfo', {title: "change group info"});
+});
 module.exports = router;
