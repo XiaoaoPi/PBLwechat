@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>申请课题</title>
     <meta name="description" content="申请课题">
+    <!-- Jquery wechat(js) CDN-->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://unpkg.com/leancloud-storage/dist/av.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <!-- 手机端的页面处理 -->
@@ -13,8 +14,9 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <!-- wechat UI CDN (CSS) -->
+    <!-- wechat UI CDN (CSS/JS) -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
     <!-- 本地的脚本 -->
     <script type="text/javascript" src="/scripts/initLeanCloud.js"></script>
     <script type="text/javascript" src="/scripts/reuseMethods.js"></script>
@@ -23,36 +25,41 @@
   <body ontouchstart style="background-color: #f8f8f8;">
     <div class="weui-cells__title">申请课题</div>
     <form class='inputInfo'>
-    <div class="change-info weui-cells">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <label for="inputTitle" class="sr-only"></label>
-          <input type="text" id="inputTitle" class="weui-input form-control" placeholder=课题标题 required autofocus>
+      <div class="change-info weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <label for="inputReason" class="sr-only"></label>
+            <input type="text" id="inputReason" class="weui-input form-control" placeholder=申请原因（非必需）  autofocus>
+          </div>
         </div>
+        <br>
       </div>
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <label for="inputReason" class="sr-only"></label>
-          <input type="text" id="inputReason" class="weui-input form-control" placeholder=申请原因（非必需）  autofocus>
-        </div>
-      </div>
-      <br>
-      <button class="weui-btn weui-btn_primary" type="submit">提交申请</button>
-    </div>
+      <div class="weui-cells__title">选择课题</div>
       <div id="tableList"></div>
+      <button class="weui-btn weui-btn_primary" type="submit">提交申请</button>
     </form>
-    <script id="problem" type="text/x-handlebars-template"> 
+    <!-- handlebars template -->
+    <script id="problem" type="text/x-handlebars-template">
     \{{#each problems}}
-    <div class="weui-cells" style="background-color: #F0F0F0;margin-top: 15px;">
-      <div class="weui-cell" >
-        <div class="weui-cell__bd">
-          <p>\{{title}}</p>
-          <p style="font-size: 13px;color: #888888;">课题难度：\{{difficulty}}</P>
-          <p style="font-size: 13px;color: #888888;">演讲时间：\{{speakTime}}</P>
-        </div>
+    <div class="weui-cells" style="background-color: #F0F0F0;margin-top: 0px;">
+      <div class="weui-cells weui-cells_radio">
+        <label class="weui-cell weui-check__label" for="\{{objectId}}">
+          <div class="weui-cell__bd">
+            <p>\{{title}}</p>
+            <p style="font-size: 13px;color: #888888;">课题难度：\{{difficulty}}</P>
+            <p style="font-size: 13px;color: #888888;">演讲时间：\{{speakTime}}</P>
+          </div>
+          <div class="weui-cell__ft">
+            <input type="radio" class="weui-check" name="problem" id="\{{objectId}}" value =\{{objectId}}>
+            <span class="weui-icon-checked"></span>
+          </div>
+        </label>
       </div>
     </div>
     \{{/each}}
     </script>
+    <!-- Jquery wechat(js) CDN-->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
   </body>
 </html>

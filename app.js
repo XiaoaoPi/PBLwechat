@@ -41,16 +41,18 @@ app.use(cookieParser());
 app.use('/account', account);
 app.use('/group', group);
 app.use('/problem', problem);
-app.get('/', function(req, res) {
-  res.render('login', {title: 'user login'});
+app.get('/signup', function(req, res) {
+    res.render('signup');
 });
 app.get('/login', function(req, res) {
-  res.render('login', {title: 'user login'});
+    res.render('login', {title: ''});
 });
-app.get('/signup', function(req, res) {
-  res.render('signup', {title: 'user signup'});
+app.get('/success', function(req, res) {
+    res.render('success');
 });
-
+app.get('/menu', function(req, res) {
+    res.render('menu');
+});
 // 可以将一类的路由单独保存在一个文件中
 /*app.use('/todos', require('./routes/todos'));*/
 

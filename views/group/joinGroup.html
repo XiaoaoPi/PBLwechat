@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>加入小组</title>
     <meta name="description" content="基本信息">
+    <!-- Jquery wechat(js) CDN-->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://unpkg.com/leancloud-storage/dist/av.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <!-- 手机端的页面处理 -->
@@ -13,8 +14,9 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <!-- wechat UI CDN (CSS) -->
+    <!-- wechat UI CDN (CSS/JS) -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
     <!-- 本地的脚本 -->
     <script type="text/javascript" src="/scripts/initLeanCloud.js"></script>
     <script type="text/javascript" src="/scripts/reuseMethods.js"></script>
@@ -23,46 +25,49 @@
   <body ontouchstart style="background-color: #f8f8f8;">
     <div class="weui-cells__title">加入小组</div>
     <form class='inputInfo'>
-    <div class="change-info weui-cells">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <label for="inputUsername" class="sr-only"></label>
-          <input type="username" id="inputGroupName" class="weui-input form-control" placeholder=小组名称 required autofocus>
+      <div class="change-info weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <label for="inputPassword" class="sr-only"></label>
+            <input type="username" id="inputPassword" class="weui-input form-control" placeholder=申请密码(仅对密码模式下的小组)  autofocus>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">
+            <label for="inputReason" class="sr-only"></label>
+            <input type="text" id="inputReason" class="weui-input form-control" placeholder=申请原因（非必需）  autofocus>
+          </div>
         </div>
       </div>
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <label for="inputPassword" class="sr-only"></label>
-          <input type="username" id="inputPassword" class="weui-input form-control" placeholder=申请密码(仅对密码模式下的小组)  autofocus>
-        </div>
-      </div>
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <label for="inputReason" class="sr-only"></label>
-          <input type="text" id="inputReason" class="weui-input form-control" placeholder=申请原因（非必需）  autofocus>
-        </div>
-      </div>
-    </div>
-   
-
+      
+      <div class="weui-cells__title">选择小组</div>
       <div id="tableList"></div>
       <br>
       <button class="weui-btn weui-btn_primary" type="submit">申请加入</button>
     </form>
-    <script id="userGroup" type="text/x-handlebars-template"> 
+    <script id="userGroup" type="text/x-handlebars-template">
     \{{#each groups}}
-    <div class="weui-cells" style="background-color: #F0F0F0;margin-top: 15px;">
-      <div class="weui-cell" >
-        <div class="weui-cell__bd">
-          <p>\{{name}}</p>
-          <p style="font-size: 13px;color: #888888;">小组长：\{{leaderName}}</P>
-          \{{#unless flag}}
-          <p style="font-size: 13px;color: #888888;">密码模式</P>
-          \{{/unless}}
-        </div>
+    <div class="weui-cells" style="background-color: #F0F0F0;margin-top: 0px;">
+      <div class="weui-cells weui-cells_radio">
+        <label class="weui-cell weui-check__label" for="\{{groupId}}">
+          <div class="weui-cell__bd">
+            <p>\{{name}}</p>
+            <p style="font-size: 13px;color: #888888;">小组长：\{{leaderName}}</P>
+            \{{#unless flag}}
+            <p style="font-size: 13px;color: #888888;">密码模式</P>
+            \{{/unless}}
+          </div>
+          <div class="weui-cell__ft">
+            <input type="radio" class="weui-check" name="group" id="\{{groupId}}" value =\{{groupId}}>
+            <span class="weui-icon-checked"></span>
+          </div>
+        </label>
       </div>
     </div>
     \{{/each}}
     </script>
+    <!-- Jquery wechat(js) CDN-->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
   </body>
 </html>

@@ -9,10 +9,7 @@ var router = express.Router();
 router.get('/allProblems', function(req, res) {
   res.render('allProblems', {title: "show the projects"});
 });
-router.get('/myGroup', function(req, res) {
-  res.render('myGroup', {title: "group info"});
-});
-router.get('/joinGroup', function(req, res) {
-  res.render('joinGroup', {title: "join a group"});
+router.get('/myProblems', function(req, res) {
+  res.render('myProblems', {title: "my projects"});
 });
 module.exports = router;

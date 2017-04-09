@@ -9,13 +9,15 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
+      <!-- Jquery wechat(js) CDN-->
+  <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <!-- CDNs for js -->
     <script src="https://unpkg.com/leancloud-storage/dist/av.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-    <!-- wechat UI CDN (CSS) -->
+    <!-- wechat UI CDN (CSS/JS) -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
     <!-- 本地的脚本 -->
     <script type="text/javascript" src="/scripts/initLeanCloud.js"></script>
     <script type="text/javascript" src="/scripts/reuseMethods.js"></script>
@@ -32,6 +34,7 @@
             <input type="text" id="inputGroupName" class="weui-input form-control" placeholder='请输入小组名称' required autofocus>
           </div>
         </div>
+      </div>
     <div class="weui-cells__title">对外权限</div>
         <div class="weui-cells weui-cells_radio">
           <label class="weui-cell weui-check__label" for="open">
@@ -39,7 +42,7 @@
               <p>公开</p>
             </div>
             <div class="weui-cell__ft">
-              <input type="radio" class="weui-check" name="flag" id="open" value =2>
+              <input type="radio" class="weui-check" name="flag" id="open" value =0>
               <span class="weui-icon-checked"></span>
             </div>
           </label>
@@ -48,7 +51,7 @@
               <p>隐藏</p>
               </div>
               <div class="weui-cell__ft">
-                <input type="radio" name="flag" class="weui-check" id="hidden" value =0>
+                <input type="radio" name="flag" class="weui-check" id="hidden" value =1>
                 <span class="weui-icon-checked"></span>
               </div>
             </label>
@@ -57,21 +60,24 @@
               <p>密码模式</p>
               </div>
               <div class="weui-cell__ft">
-                <input type="radio" name="flag" class="weui-check" id="code" value =1>
+                <input type="radio" name="flag" class="weui-check" id="code" value =2>
                 <span class="weui-icon-checked"></span>
               </div>
             </label>
         </div>
-        <br>
         <div class="weui-cells__title">密码（非必需）</div>
+        <div class="weui-cells">
           <div class="weui-cell">
             <div class="weui-cell__bd">
               <label for="inputPassword" class="sr-only"></label>
-              <input type="text" id="inputPassword" class="weui-input form-control" placeholder='仅在密码模式下生效' required autofocus>
+              <input type="text" id="inputPassword" class="weui-input form-control" placeholder='仅在密码模式下生效' autofocus>
             </div>
           </div>
-          <button class="weui-btn weui-btn_primary" type="submit">保存</button>
+        </div>
+          <button class="weui-btn weui-btn_primary" type="submit" >保存</button>
         </form>
-      </div>
+  <!-- Jquery wechat(js) CDN-->
+  <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
     </body>
   </html>
